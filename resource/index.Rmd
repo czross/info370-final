@@ -1,7 +1,11 @@
 ---
-title: "Final Project Resource"
+title: "Understanding the Affects of GDP and Population on Crime in US Cities"
 output: html_notebook
 ---
+&nbsp;
 
 #### Isabella Spaletta, Marisa Nanakul, Christopher Ross, Kai Yoshino
 ##### Affiliation: University of Washington - Information School
+&nbsp;
+
+### Purpose
