@@ -1,5 +1,6 @@
 library(dplyr)
 library(ggplot2)
+library(tidyr)
 
 # Load in main crime data of all cities wide file format
 crime.data <- read.csv("data/csv/Cities-2010-2015.csv", stringsAsFactors = FALSE)
@@ -25,8 +26,7 @@ crime.data <- crime.data %>%
 # finds the places where crime has increased 
 increase.crime <- filter(crime.data, diff.2010.2011 < 0)
 
-
-# summarises by state and year
+# summarises by state and year 
 summary.states.2010 <- crime.data %>% 
                   group_by(State) %>% 
                   summarise(Population.2010 = sum(Population_2010, na.rm = TRUE), total.Crime.2010 = sum(Violent_crime_2010 + Property_crime_2010, na.rm = TRUE))
@@ -52,6 +52,8 @@ summary.states.2015 <- crime.data %>%
   summarise(Population.2015 = sum(Population_2015, na.rm = TRUE), total.Crime.2015 = sum(Violent_crime_2015 + Property_crime_2015, na.rm = TRUE))
 
 
+
+
 full.summary <- full_join(summary.states.2010, summary.states.2011, by="State") %>% 
                 full_join(., summary.states.2012, by="State") %>% 
                 full_join(., summary.states.2013, by="State") %>% 
@@ -62,6 +64,7 @@ write.csv(full.summary, "full-summary.csv")
 
 wide.full.summary <- read.csv("full-summary.csv", stringsAsFactors = FALSE)
 
+# Regression simply 
 regression <- lm(wide.full.summary$percent ~ wide.full.summary$Population)
 
 wide.full.summary$percent <- wide.full.summary$total.Crime. /wide.full.summary$Population 
@@ -73,3 +76,25 @@ regression.percent <- glm(percent ~ Population + total.Crime., data = wide.full.
 summary(regression)
 
 summary(regression.percent)
+
+
+
+ggplot(wide.full.summary, aes(x=Population, y=percent, color=Year)) +
+  geom_point() +    # Use hollow circles
+  geom_smooth()  + 
+  ggtitle("Population of Cities and Rate of Crime")
+
+
+crime.data[is.na(crime.data)] <- 0
+
+data.long.violent <- gather(crime.data, year, amount, Violent_crime_2010, Violent_crime_2011, Violent_crime_2012, Violent_crime_2013, Violent_crime_2014, Violent_crime_2015)
+
+data.long.violent <- data.long.violent %>% 
+            select(State, City, year, amount)
+
+data.long.property <- gather(crime.data, year, amount, Property_crime_2010, Property_crime_2011, Property_crime_2012, Property_crime_2013, Property_crime_2014, Property_crime_2015)
+
+data.long.property <- data.long.property %>% 
+  select(State, City, year, amount)
+
+
