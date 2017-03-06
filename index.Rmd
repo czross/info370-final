@@ -1,0 +1,7 @@
+---
+title: "Final Project Resource"
+output: html_notebook
+---
+
+#### Isabella Spaletta, Marisa Nanakul, Christopher Ross, Kai Yoshino
+##### Affiliation: University of Washington - Information School

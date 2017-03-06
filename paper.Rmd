@@ -1,0 +1,57 @@
+---
+title: "Final Project Paper" #change title
+output: html_notebook
+---
+
+#### Isabella Spaletta, Marisa Nanakul, Christopher Ross, Kai Yoshino
+##### Affiliation: University of Washington - Information School
+
+### Abstract
+
+### Introduction
+
+### Related Work
+
+### Data Prep
+
+### Analysis 
+
+### Results
+
+### Discussion
+
+### Future Work
+
+### References
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
