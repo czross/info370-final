@@ -1,6 +1,8 @@
 ---
-title: "Final Project Paper" #change title
-output: html_notebook
+title: "Final Project Paper"
+output:
+  html_document: default
+  html_notebook: default
 ---
 
 #### Isabella Spaletta, Marisa Nanakul, Christopher Ross, Kai Yoshino
@@ -10,9 +12,29 @@ output: html_notebook
 
 ### Introduction
 
+Currently, there are many different sites and organizations that collect data on cities or large metropolitan areas. The Federal Bureau of Investigation (FBI) collects crime data every year for individual cities within the United States, and the Bureau of Economic Analysis (BEA) gathered an overall metropolitan area Gross Domestic Product (GDP) every year since 2010. There are a few different organizations or articles that have looked at a comparison between crime rates and the GDP of specific metropolitan areas, but our specific analysis does not consider outside covariates when comparing crime rate and GDP of metropolitan areas. Some of the related work we will discuss takes the change in economy after the 2008 financial crisis into account. One other research group took into account economic uncertainty whereas we will not be taking into account outside covariates and comparing crime rate and GDP at face value. We want to look at the GDP and crime relationship unaffected by other covariates to see if there is a correlation between the two variables.
+
+**NEED KEY FINDINGS**
+
+Our analysis focuses on violent and property crime impact on city GDPs without covariates. The analysis is a unique contribution because rather than analyzing from the state level, we are choosing to focus on the city level, adding an extra area of granularity. In terms of covariates, we are not accounting for confounding covariates such as uncertainty demonstrated by Goulas. We are observing and comparing violent and property crime trends to city GDP trends. 
+
 ### Related Work
 
+In the past, most research has been focused around states in the U.S. and countries around the world. In “Falling Together” [1], data from the U.S. Department of Justice from 2007-2010 was used to analyze the relationship between property crime rates and GDP per person in all 50 states. The results found that property crime rates and GDP both decreased during this time frame. Specifically after the recession, the general trend was as GDP decreased so did property crimes. The cause of the trend is unknown.
+
+“The Puzzling Relationship Between Crime and the Economy” [2] delves into the different conclusions economists and criminologists conclude about the relationship between crime and the economy. Criminologists believe that tough economic times increase the likelihood of a person committing a crime. They also believe that economic anxieties cause people to consume more mind-altering substances, leading to increased violence. Economists believe better economic conditions increase the likelihood of a person committing a crime. With technology becoming more visible and ingrained into people’s lives, criminals are able to see what’s possible to steal. Analysis on violent and property crimes from 1960-2012 suggests that there is no relationship between GDP and crime, and that crime is episodic.
+
+In “Economic growth and crime: does uncertainty matter?” [3] 25 countries (including the U.S.) are analyzed with a macroeconomic uncertainty metric to observe whether there is a relationship between crime and GDP. The researchers found that if GDP uncertainty is negative, the crime uncertainty is positive, meaning that crime uncertainty negatively impacts GDP uncertainty. 
+
 ### Data Prep
+
+The preparation of our data, specifically combining the crime and GDP datasets, was a very important and large aspect of conducting this research. The data given to us was very different in formatting and was therefore fairly difficult to combine. The FBI crime dataset had city names in one column rather than metropolitan areas (some cities combined), and in another column the state names were fully written out instead of having state abbreviations. All of the crime datasets were also separated by year, whereas the GDP dataset had columns of GDP data separated by year. 
+
+To begin combining these two datasets, we joined all of the crime datasets together so that every year was accounted for in each city within the dataset. From here, we decided that since the GDP dataset had less cities/metropolitan areas to account for, we would take all of the corresponding cities from the crime dataset and add the GDP for each of those cities to the crime dataset. We then removed any city within the crime dataset that did not include a GDP (was not included in the GDP dataset). New rows were added for the metropolitan areas that included more than one city (e.g. Seattle-Tacoma-Bellevue) and added up the crimes in each of the cities to get a total for the new row added. This is important because to keep the GDP accurate, we had to keep the cities combined as a metropolitan area, but we could account for the crimes by adding the counts together and doing analysis from the new totals. We also removed any metropolitan area from the GDP dataset that included multiple states. 
+
+Our final dataset came out as a final CSV that included any city or metropolitan areas that were included in both the crime and GDP dataset. For each of these cities or metropolitan areas, we included the crime data for 2010-2015 and the GDP for 2010-2015. This came out to include _____**(how many rows did we end up with for our data?)** cities or metropolitan areas. 
+
+One thing to note is that to reproduce this research you will have to use the CSV we created or any other researcher could find other data sources for GDP and crime for the years 2010 to 2015 and create their own new dataset. 
 
 ### Analysis 
 
@@ -24,9 +46,11 @@ output: html_notebook
 
 ### References
 
+Goulas, Eleftherios, and Athina Zervoyianni. "Economic Growth and Crime: Does Uncertainty Matter?" Applied Economics Letters 20.5 (2013): 420-27. Web.
 
+Roman, John. "The Puzzling Relationship Between Crime and the Economy." CityLab. The Atlantic, 23 Sept. 2013. Web. 05 Mar. 2017. 
 
-
+The Economist Online. "Falling Together." The Economist. The Economist Newspaper, 26 Sept. 2011. Web. 05 Mar. 2017. 
 
 
 
