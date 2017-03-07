@@ -84,14 +84,3 @@ Below is an example of what the crime dataset looks like (shows all 5 years):
 <br>
 
 
-
-
-
-
-
-
-
-
-
-
-

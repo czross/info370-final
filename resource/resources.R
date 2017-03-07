@@ -2,10 +2,14 @@ library(dplyr)
 library(plotly)
 library(ggplot2)
 library(tidyr)
+library(reshape2)
 
 # Read in data sets while in file
-# cities.all <- read.csv("data/csv/Cities-2010-2015.csv") 
-# gdp <- read.csv("data/csv/gdp_crime.csv")
+
+cities.all <- read.csv("data/csv/Cities-2010-2015.csv") 
+#gdp <- read.csv("data/csv/gdp_crime.csv")
+#long.gdp <- read.csv("for-long.csv")
+
 
 # read in data sets while in RMD file 
 cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
@@ -79,10 +83,22 @@ poisson.2015 <- glm(crime_per_person_2015 ~ gdp_per_person_2015 + Population_201
 
 summary(poisson.2015)
 
-# Remove rows with zeros
-# row_sub = apply(dd, 1, function(row) all(row !=0 ))
-##Subset as usual
-# dd[row_sub,]
+total <- cities.all %>% 
+          filter(grepl("-", City))
+columbia <- cities.all %>% 
+            filter(City == "Columbia")
 
+test <- melt(gdp, id.vars = c("State", "City", "id"))
 
+population <- test %>% 
+            filter(grepl("Population_", variable))
+
+total.crime <- test %>% 
+            filter(grepl("total_crime_", variable))
+
+total.gdp <- test %>% 
+            filter(grepl("gdp_per_person", variable))
+
+crime.per.person <- test %>% 
+            filter(grepl(""))
 
