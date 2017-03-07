@@ -12,5 +12,5 @@ source("resources.R")
 
 ### What is the data?
 
-The data that we used in this anaylsis is combination of a data set that has crime in US cities over a 5 year time persion (2010-2015) and the GDP for cities in the same time period. 
+The data that we used in this anaylsis is a combination of a data set that has crime in US cities over a 5 year time period (2010-2015) and the GDP for cities in the same time period. 
 
