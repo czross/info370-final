@@ -1,16 +1,97 @@
 ---
 title: "Understanding GDP relations to Crime in US Cities"
-author: "Kai Yoshina, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul"
+author: "Kai Yoshino, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul"
 date: "March 6, 2017"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
 source("resources.R")
 ```
 
-### What is the data?
+### What Are The Datasets?
 
-The data that we used in this anaylsis is combination of a data set that has crime in US cities over a 5 year time persion (2010-2015) and the GDP for cities in the same time period. 
+The two datasets that we used in this anaylsis are one for crime based data on U.S. cities over a 5 year time period (2010-2015) and one for the GDP for metropolitan areas in the U.S. over a 5 year time period (2010-2015). 
+
+#### FBI Crime Dataset
+
+Below is an example of what the crime dataset looks like (shows all 5 years): 
+
+```{r, echo=FALSE}
+  kable(cities.all[1:5,])
+```
+
+##### Observations Made About the Dataset
+* The size of the dataset is {rows, columns}:
+
+```{r, echo=FALSE}
+  dim(cities.all)
+```
+
+* Column Names and Data Types of the crime table:
+
+```{r, echo=FALSE}
+  colnames(cities.all)
+```
+
+```{r, echo=FALSE}
+  sapply(cities.all, typeof)
+```
+
+
+##### Other Observations & Changes Made to Dataset
+* All crime datasets were individually captured by year, but we combined them to make one large crime dataset.
+* If a city has a crime value of NA, this means this data could not be found, not that any of these crimes did not occur. NA does not equal 0 in this dataset.
+* Violent crimes is defined of four offenses: murder and nonnegligent manslaughter, rape, robbery, and aggravated assault.
+* Property crimes is defined of four offenses: burglary, larceny theft, motor vehicle theft, and arson.
+<br>
+<br>
+
+#### GDP Dataset
+
+```{r, echo=FALSE}
+  gdp[1:5,] %>% 
+  select_("gdp_2010", "gdp_2011", "gdp_2012", "gdp_2013", "gdp_2014", "gdp_2015", "gdp_per_person_2010", "gdp_per_person_2011",	"gdp_per_person_2012",	"gdp_per_person_2013", "gdp_per_person_2014",	"gdp_per_person_2015") %>% 
+  kable()
+```
+
+##### Observations Made About the Dataset
+* The size of the dataset is {rows, columns}:
+
+```{r, echo=FALSE}
+  dim(gdp %>% 
+  select_("gdp_2010", "gdp_2011", "gdp_2012", "gdp_2013", "gdp_2014", "gdp_2015", "gdp_per_person_2010", "gdp_per_person_2011",	"gdp_per_person_2012",	"gdp_per_person_2013", "gdp_per_person_2014",	"gdp_per_person_2015"))
+```
+
+* Column Names and Data Types of the crime table:
+
+```{r, echo=FALSE}
+  colnames(gdp %>% 
+  select_("gdp_2010", "gdp_2011", "gdp_2012", "gdp_2013", "gdp_2014", "gdp_2015", "gdp_per_person_2010", "gdp_per_person_2011",	"gdp_per_person_2012",	"gdp_per_person_2013", "gdp_per_person_2014",	"gdp_per_person_2015"))
+```
+
+```{r, echo=FALSE}
+  sapply(gdp %>% 
+  select_("gdp_2010", "gdp_2011", "gdp_2012", "gdp_2013", "gdp_2014", "gdp_2015", "gdp_per_person_2010", "gdp_per_person_2011",	"gdp_per_person_2012",	"gdp_per_person_2013", "gdp_per_person_2014",	"gdp_per_person_2015"), typeof)
+```
+
+##### Other Observations & Changes Made to Dataset
+* All of this GDP data was added to the entire crime dataset.
+* We included the GDP each of the five years and GDP per person for each of the five years.
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
 

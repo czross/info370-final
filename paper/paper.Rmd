@@ -36,6 +36,10 @@ Our final dataset came out as a final CSV that included any city or metropolitan
 
 One thing to note is that to reproduce this research you will have to use the CSV we created or any other researcher could find other data sources for GDP and crime for the years 2010 to 2015 and create their own new dataset. 
 
+Another thing to note is that 
+'violent crimes' is defined by four offenses: murder and nonnegligent manslaughter, rape, robbery, and aggravated assault. 
+'property crimes' is defined by four offenses: burglary, larceny theft, motor vehicle theft, and arson.
+
 ### Analysis 
 
 ### Results
