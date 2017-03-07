@@ -1,11 +1,16 @@
 ---
-title: "Understanding the Affects of GDP and Population on Crime in US Cities"
-output: html_notebook
+title: "Understanding GDP relations to Crime in US Cities"
+author: "Kai Yoshina, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul"
+date: "March 6, 2017"
+output: html_document
 ---
-&nbsp;
 
-#### Isabella Spaletta, Marisa Nanakul, Christopher Ross, Kai Yoshino
-##### Affiliation: University of Washington - Information School
-&nbsp;
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("resources.R")
+```
 
-### Purpose
+### What is the data?
+
+The data that we used in this anaylsis is combination of a data set that has crime in US cities over a 5 year time persion (2010-2015) and the GDP for cities in the same time period. 
+
