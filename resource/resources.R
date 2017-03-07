@@ -16,21 +16,21 @@ long.gdp <- read.csv("for-long.csv")
 # convert all NA values to 0, ya not great but it makes things work
 gdp[is.na(gdp)] <- 0
 
-gdp$gdp_per_person_2010 <- gdp$gdp_2010 * 1000000 / gdp$Population_2010
-gdp$gdp_per_person_2011 <- gdp$gdp_2011 * 1000000 / gdp$Population_2011
-gdp$gdp_per_person_2012 <- gdp$gdp_2012 * 1000000 / gdp$Population_2012
-gdp$gdp_per_person_2013 <- gdp$gdp_2013 * 1000000 / gdp$Population_2013
-gdp$gdp_per_person_2014 <- gdp$gdp_2014 * 1000000 / gdp$Population_2014
-gdp$gdp_per_person_2015 <- gdp$gdp_2015 * 1000000 / gdp$Population_2015
+gdp$gdp_per_person_2010 <- gdp$X2010_gdp * 1000000 / gdp$Population_2010
+gdp$gdp_per_person_2011 <- gdp$X2011_gdp * 1000000 / gdp$Population_2011
+gdp$gdp_per_person_2012 <- gdp$X2012_gdp * 1000000 / gdp$Population_2012
+gdp$gdp_per_person_2013 <- gdp$X2013_gdp * 1000000 / gdp$Population_2013
+gdp$gdp_per_person_2014 <- gdp$X2014_gdp * 1000000 / gdp$Population_2014
+gdp$gdp_per_person_2015 <- gdp$X2015_gdp * 1000000 / gdp$Population_2015
 
 # Add total crime for each year
 gdp <- gdp %>% 
-        mutate(total_crime_2010 = (Violent_Crime_2010 + Property_Crime_2010), 
-               total_crime_2011 = (Violent_Crime_2011 + Property_Crime_2011),
-               total_crime_2012 = (Violent_Crime_2012 + Property_Crime_2012),
-               total_crime_2013 = (Violent_Crime_2013 + Property_Crime_2013),
-               total_crime_2014 = (Violent_Crime_2014 + Property_Crime_2014),
-               total_crime_2015 = (Violent_Crime_2015 + Property_Crime_2015))
+        mutate(total_crime_2010 = (Violent_crime_2010 + Property_crime_2010), 
+               total_crime_2011 = (Violent_crime_2011 + Property_crime_2011),
+               total_crime_2012 = (Violent_crime_2012 + Property_crime_2012),
+               total_crime_2013 = (Violent_crime_2013 + Property_crime_2013),
+               total_crime_2014 = (Violent_crime_2014 + Property_crime_2014),
+               total_crime_2015 = (Violent_crime_2015 + Property_crime_2015))
 
 gdp <- gdp %>% 
       mutate(crime_per_person_2010 = (total_crime_2010 / Population_2010),
