@@ -97,5 +97,6 @@ total.crime <- test %>%
 total.gdp <- test %>% 
             filter(grepl("gdp_per_person", variable))
 
-
+crime.per.person <- test %>% 
+            filter(grepl(""))
 
