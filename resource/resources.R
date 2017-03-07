@@ -5,13 +5,15 @@ library(tidyr)
 library(reshape2)
 
 # Read in data sets while in file
+
 cities.all <- read.csv("data/csv/Cities-2010-2015.csv") 
-gdp <- read.csv("data/csv/gdp_crime.csv")
-long.gdp <- read.csv("for-long.csv")
+#gdp <- read.csv("data/csv/gdp_crime.csv")
+#long.gdp <- read.csv("for-long.csv")
+
 
 # read in data sets while in RMD file 
-# cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
-# gdp <- read.csv("../data/csv/gdp_crime.csv")
+cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
+gdp <- read.csv("../data/csv/gdp_crime.csv")
 
 # convert all NA values to 0, ya not great but it makes things work
 gdp[is.na(gdp)] <- 0

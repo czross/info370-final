@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Kai Yoshina, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul" />
+<meta name="author" content="Kai Yoshino, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul" />
 
 
 <title>Understanding GDP relations to Crime in US Cities</title>
@@ -117,15 +117,694 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Understanding GDP relations to Crime in US Cities</h1>
-<h4 class="author"><em>Kai Yoshina, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul</em></h4>
+<h4 class="author"><em>Kai Yoshino, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul</em></h4>
 <h4 class="date"><em>March 6, 2017</em></h4>
 
 </div>
 
 
-<div id="what-is-the-data" class="section level3">
-<h3>What is the data?</h3>
-<p>The data that we used in this anaylsis is combination of a data set that has crime in US cities over a 5 year time persion (2010-2015) and the GDP for cities in the same time period.</p>
+<div id="what-are-the-datasets" class="section level3">
+<h3>What Are The Datasets?</h3>
+<p>The two datasets that we used in this anaylsis are one for crime based data on U.S. cities over a 5 year time period (2010-2015) and one for the GDP for metropolitan areas in the U.S. over a 5 year time period (2010-2015).</p>
+<div id="fbi-crime-dataset" class="section level4">
+<h4>FBI Crime Dataset</h4>
+<p>Below is an example of what the crime dataset looks like (shows all 5 years):</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">X</th>
+<th align="left">State</th>
+<th align="left">City</th>
+<th align="right">Population_2010</th>
+<th align="right">Violent_Crime_2010</th>
+<th align="right">Murder_Manslaughter_2010</th>
+<th align="right">Rape_2010</th>
+<th align="right">Robbery_2010</th>
+<th align="right">Aggravated_Assault_2010</th>
+<th align="right">Property_Crime_2010</th>
+<th align="right">Burglary_2010</th>
+<th align="right">Larceny_Theft_2010</th>
+<th align="right">Motor_Vehicle_Theft_2010</th>
+<th align="right">Arson_2010</th>
+<th align="right">Population_2011</th>
+<th align="right">Violent_Crime_2011</th>
+<th align="right">Murder_Manslaughter_2011</th>
+<th align="right">Forcible_Rape_2011</th>
+<th align="right">Robbery_2011</th>
+<th align="right">Aggravated_Assault_2011</th>
+<th align="right">Property_Crime_2011</th>
+<th align="right">Burglary_2011</th>
+<th align="right">Larceny_Theft_2011</th>
+<th align="right">Motor_Vehicle_Theft_2011</th>
+<th align="right">Arson_2011</th>
+<th align="right">Population_2012</th>
+<th align="right">Violent_Crime_2012</th>
+<th align="right">Murder_Manslaughter_2012</th>
+<th align="right">Rape_2012</th>
+<th align="right">Robbery_2012</th>
+<th align="right">Aggravated_Assault_2012</th>
+<th align="right">Property_Crime_2012</th>
+<th align="right">Burglary_2012</th>
+<th align="right">Larceny_Theft_2012</th>
+<th align="right">Motor_Vehicle_Theft_2012</th>
+<th align="right">Arson_2012</th>
+<th align="right">Population_2013</th>
+<th align="right">Violent_Crime_2013</th>
+<th align="right">Murder_Manslaughter_2013</th>
+<th align="right">Rape_2013</th>
+<th align="right">Rape_Legacy_2013</th>
+<th align="right">Robbery_2013</th>
+<th align="right">Aggravated_Assault_2013</th>
+<th align="right">Property_Crime_2013</th>
+<th align="right">Burglary_2013</th>
+<th align="right">Larceny_Theft_2013</th>
+<th align="right">Motor_Vehicle_Theft_2013</th>
+<th align="right">Arson_2013</th>
+<th align="right">Population_2014</th>
+<th align="right">Violent_Crime_2014</th>
+<th align="right">Murder_Manslaughter_2014</th>
+<th align="right">Rape_2014</th>
+<th align="right">Rape_Legacy_2014</th>
+<th align="right">Robbery_2014</th>
+<th align="right">Aggravated_Assault_2014</th>
+<th align="right">Property_Crime_2014</th>
+<th align="right">Burglary_2014</th>
+<th align="right">Larceny_Theft_2014</th>
+<th align="right">Motor_Vehicle_Theft_2014</th>
+<th align="right">Arson_2014</th>
+<th align="right">Population_2015</th>
+<th align="right">Violent_Crime_2015</th>
+<th align="right">Murder_Manslaughter_2015</th>
+<th align="right">Rape_2015</th>
+<th align="right">Rape_Legacy_2015</th>
+<th align="right">Robbery_2015</th>
+<th align="right">Aggravated_Assault_2015</th>
+<th align="right">Property_Crime_2015</th>
+<th align="right">Burglary_2015</th>
+<th align="right">Larceny_Theft_2015</th>
+<th align="right">Motor_Vehicle_Theft_2015</th>
+<th align="right">Arson_2015</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Alabama</td>
+<td align="left">Abbeville</td>
+<td align="right">2950</td>
+<td align="right">21</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">20</td>
+<td align="right">67</td>
+<td align="right">19</td>
+<td align="right">45</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">2701</td>
+<td align="right">13</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">65</td>
+<td align="right">12</td>
+<td align="right">51</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2715</td>
+<td align="right">22</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">18</td>
+<td align="right">57</td>
+<td align="right">16</td>
+<td align="right">38</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">2645</td>
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">63</td>
+<td align="right">21</td>
+<td align="right">39</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">2643</td>
+<td align="right">8</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">85</td>
+<td align="right">22</td>
+<td align="right">52</td>
+<td align="right">11</td>
+<td align="right">NA</td>
+<td align="right">2610</td>
+<td align="right">9</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">6</td>
+<td align="right">76</td>
+<td align="right">24</td>
+<td align="right">50</td>
+<td align="right">2</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Alabama</td>
+<td align="left">Adamsville</td>
+<td align="right">4796</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">294</td>
+<td align="right">21</td>
+<td align="right">250</td>
+<td align="right">23</td>
+<td align="right">NA</td>
+<td align="right">4544</td>
+<td align="right">37</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">26</td>
+<td align="right">300</td>
+<td align="right">61</td>
+<td align="right">226</td>
+<td align="right">13</td>
+<td align="right">2</td>
+<td align="right">4543</td>
+<td align="right">28</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">20</td>
+<td align="right">292</td>
+<td align="right">49</td>
+<td align="right">223</td>
+<td align="right">20</td>
+<td align="right">NA</td>
+<td align="right">4481</td>
+<td align="right">19</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">7</td>
+<td align="right">11</td>
+<td align="right">321</td>
+<td align="right">58</td>
+<td align="right">252</td>
+<td align="right">11</td>
+<td align="right">NA</td>
+<td align="right">4430</td>
+<td align="right">30</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">NA</td>
+<td align="right">6</td>
+<td align="right">19</td>
+<td align="right">373</td>
+<td align="right">43</td>
+<td align="right">321</td>
+<td align="right">9</td>
+<td align="right">NA</td>
+<td align="right">4414</td>
+<td align="right">25</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">5</td>
+<td align="right">16</td>
+<td align="right">330</td>
+<td align="right">38</td>
+<td align="right">278</td>
+<td align="right">14</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Alabama</td>
+<td align="left">Addison</td>
+<td align="right">714</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">33</td>
+<td align="right">3</td>
+<td align="right">26</td>
+<td align="right">4</td>
+<td align="right">NA</td>
+<td align="right">762</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">28</td>
+<td align="right">9</td>
+<td align="right">15</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">757</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">29</td>
+<td align="right">5</td>
+<td align="right">18</td>
+<td align="right">6</td>
+<td align="right">NA</td>
+<td align="right">744</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">25</td>
+<td align="right">6</td>
+<td align="right">17</td>
+<td align="right">2</td>
+<td align="right">NA</td>
+<td align="right">747</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">31</td>
+<td align="right">6</td>
+<td align="right">22</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">748</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">28</td>
+<td align="right">11</td>
+<td align="right">15</td>
+<td align="right">2</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Alabama</td>
+<td align="left">Alabaster</td>
+<td align="right">30781</td>
+<td align="right">33</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">26</td>
+<td align="right">515</td>
+<td align="right">22</td>
+<td align="right">458</td>
+<td align="right">35</td>
+<td align="right">NA</td>
+<td align="right">30498</td>
+<td align="right">59</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">10</td>
+<td align="right">46</td>
+<td align="right">656</td>
+<td align="right">86</td>
+<td align="right">541</td>
+<td align="right">29</td>
+<td align="right">1</td>
+<td align="right">30923</td>
+<td align="right">49</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">41</td>
+<td align="right">683</td>
+<td align="right">65</td>
+<td align="right">585</td>
+<td align="right">33</td>
+<td align="right">NA</td>
+<td align="right">31170</td>
+<td align="right">44</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">NA</td>
+<td align="right">11</td>
+<td align="right">31</td>
+<td align="right">640</td>
+<td align="right">70</td>
+<td align="right">544</td>
+<td align="right">26</td>
+<td align="right">NA</td>
+<td align="right">31568</td>
+<td align="right">58</td>
+<td align="right">1</td>
+<td align="right">9</td>
+<td align="right">NA</td>
+<td align="right">11</td>
+<td align="right">37</td>
+<td align="right">612</td>
+<td align="right">68</td>
+<td align="right">526</td>
+<td align="right">18</td>
+<td align="right">NA</td>
+<td align="right">31821</td>
+<td align="right">132</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">5</td>
+<td align="right">126</td>
+<td align="right">534</td>
+<td align="right">64</td>
+<td align="right">441</td>
+<td align="right">29</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Alabama</td>
+<td align="left">Albertville</td>
+<td align="right">20588</td>
+<td align="right">81</td>
+<td align="right">0</td>
+<td align="right">6</td>
+<td align="right">13</td>
+<td align="right">62</td>
+<td align="right">1112</td>
+<td align="right">346</td>
+<td align="right">710</td>
+<td align="right">56</td>
+<td align="right">NA</td>
+<td align="right">21262</td>
+<td align="right">43</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">5</td>
+<td align="right">31</td>
+<td align="right">917</td>
+<td align="right">247</td>
+<td align="right">616</td>
+<td align="right">54</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">21655</td>
+<td align="right">23</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">NA</td>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">756</td>
+<td align="right">230</td>
+<td align="right">454</td>
+<td align="right">72</td>
+<td align="right">NA</td>
+<td align="right">21534</td>
+<td align="right">30</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">7</td>
+<td align="right">16</td>
+<td align="right">723</td>
+<td align="right">197</td>
+<td align="right">462</td>
+<td align="right">64</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<div id="observations-made-about-the-dataset" class="section level5">
+<h5>Observations Made About the Dataset</h5>
+<ul>
+<li>The size of the dataset is {rows, columns}:</li>
+</ul>
+<pre><code>## [1] 11103    72</code></pre>
+<ul>
+<li>Column Names and Data Types of the crime table:</li>
+</ul>
+<pre><code>##  [1] &quot;X&quot;                        &quot;State&quot;                   
+##  [3] &quot;City&quot;                     &quot;Population_2010&quot;         
+##  [5] &quot;Violent_Crime_2010&quot;       &quot;Murder_Manslaughter_2010&quot;
+##  [7] &quot;Rape_2010&quot;                &quot;Robbery_2010&quot;            
+##  [9] &quot;Aggravated_Assault_2010&quot;  &quot;Property_Crime_2010&quot;     
+## [11] &quot;Burglary_2010&quot;            &quot;Larceny_Theft_2010&quot;      
+## [13] &quot;Motor_Vehicle_Theft_2010&quot; &quot;Arson_2010&quot;              
+## [15] &quot;Population_2011&quot;          &quot;Violent_Crime_2011&quot;      
+## [17] &quot;Murder_Manslaughter_2011&quot; &quot;Forcible_Rape_2011&quot;      
+## [19] &quot;Robbery_2011&quot;             &quot;Aggravated_Assault_2011&quot; 
+## [21] &quot;Property_Crime_2011&quot;      &quot;Burglary_2011&quot;           
+## [23] &quot;Larceny_Theft_2011&quot;       &quot;Motor_Vehicle_Theft_2011&quot;
+## [25] &quot;Arson_2011&quot;               &quot;Population_2012&quot;         
+## [27] &quot;Violent_Crime_2012&quot;       &quot;Murder_Manslaughter_2012&quot;
+## [29] &quot;Rape_2012&quot;                &quot;Robbery_2012&quot;            
+## [31] &quot;Aggravated_Assault_2012&quot;  &quot;Property_Crime_2012&quot;     
+## [33] &quot;Burglary_2012&quot;            &quot;Larceny_Theft_2012&quot;      
+## [35] &quot;Motor_Vehicle_Theft_2012&quot; &quot;Arson_2012&quot;              
+## [37] &quot;Population_2013&quot;          &quot;Violent_Crime_2013&quot;      
+## [39] &quot;Murder_Manslaughter_2013&quot; &quot;Rape_2013&quot;               
+## [41] &quot;Rape_Legacy_2013&quot;         &quot;Robbery_2013&quot;            
+## [43] &quot;Aggravated_Assault_2013&quot;  &quot;Property_Crime_2013&quot;     
+## [45] &quot;Burglary_2013&quot;            &quot;Larceny_Theft_2013&quot;      
+## [47] &quot;Motor_Vehicle_Theft_2013&quot; &quot;Arson_2013&quot;              
+## [49] &quot;Population_2014&quot;          &quot;Violent_Crime_2014&quot;      
+## [51] &quot;Murder_Manslaughter_2014&quot; &quot;Rape_2014&quot;               
+## [53] &quot;Rape_Legacy_2014&quot;         &quot;Robbery_2014&quot;            
+## [55] &quot;Aggravated_Assault_2014&quot;  &quot;Property_Crime_2014&quot;     
+## [57] &quot;Burglary_2014&quot;            &quot;Larceny_Theft_2014&quot;      
+## [59] &quot;Motor_Vehicle_Theft_2014&quot; &quot;Arson_2014&quot;              
+## [61] &quot;Population_2015&quot;          &quot;Violent_Crime_2015&quot;      
+## [63] &quot;Murder_Manslaughter_2015&quot; &quot;Rape_2015&quot;               
+## [65] &quot;Rape_Legacy_2015&quot;         &quot;Robbery_2015&quot;            
+## [67] &quot;Aggravated_Assault_2015&quot;  &quot;Property_Crime_2015&quot;     
+## [69] &quot;Burglary_2015&quot;            &quot;Larceny_Theft_2015&quot;      
+## [71] &quot;Motor_Vehicle_Theft_2015&quot; &quot;Arson_2015&quot;</code></pre>
+<pre><code>##                        X                    State                     City 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##          Population_2010       Violent_Crime_2010 Murder_Manslaughter_2010 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##                Rape_2010             Robbery_2010  Aggravated_Assault_2010 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##      Property_Crime_2010            Burglary_2010       Larceny_Theft_2010 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+## Motor_Vehicle_Theft_2010               Arson_2010          Population_2011 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##       Violent_Crime_2011 Murder_Manslaughter_2011       Forcible_Rape_2011 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##             Robbery_2011  Aggravated_Assault_2011      Property_Crime_2011 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##            Burglary_2011       Larceny_Theft_2011 Motor_Vehicle_Theft_2011 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##               Arson_2011          Population_2012       Violent_Crime_2012 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+## Murder_Manslaughter_2012                Rape_2012             Robbery_2012 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##  Aggravated_Assault_2012      Property_Crime_2012            Burglary_2012 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##       Larceny_Theft_2012 Motor_Vehicle_Theft_2012               Arson_2012 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##          Population_2013       Violent_Crime_2013 Murder_Manslaughter_2013 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##                Rape_2013         Rape_Legacy_2013             Robbery_2013 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##  Aggravated_Assault_2013      Property_Crime_2013            Burglary_2013 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##       Larceny_Theft_2013 Motor_Vehicle_Theft_2013               Arson_2013 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##          Population_2014       Violent_Crime_2014 Murder_Manslaughter_2014 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##                Rape_2014         Rape_Legacy_2014             Robbery_2014 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##  Aggravated_Assault_2014      Property_Crime_2014            Burglary_2014 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##       Larceny_Theft_2014 Motor_Vehicle_Theft_2014               Arson_2014 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##          Population_2015       Violent_Crime_2015 Murder_Manslaughter_2015 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##                Rape_2015         Rape_Legacy_2015             Robbery_2015 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##  Aggravated_Assault_2015      Property_Crime_2015            Burglary_2015 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
+##       Larceny_Theft_2015 Motor_Vehicle_Theft_2015               Arson_2015 
+##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot;</code></pre>
+</div>
+<div id="other-observations-changes-made-to-dataset" class="section level5">
+<h5>Other Observations &amp; Changes Made to Dataset</h5>
+<ul>
+<li>All crime datasets were individually captured by year, but we combined them to make one large crime dataset.</li>
+<li>If a city has a crime value of NA, this means this data could not be found, not that any of these crimes did not occur. NA does not equal 0 in this dataset.</li>
+<li>Violent crimes is defined of four offenses: murder and nonnegligent manslaughter, rape, robbery, and aggravated assault.</li>
+<li>Property crimes is defined of four offenses: burglary, larceny theft, motor vehicle theft, and arson. <br> <br></li>
+</ul>
+</div>
+</div>
+<div id="gdp-dataset" class="section level4">
+<h4>GDP Dataset</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="right">gdp_2010</th>
+<th align="right">gdp_2011</th>
+<th align="right">gdp_2012</th>
+<th align="right">gdp_2013</th>
+<th align="right">gdp_2014</th>
+<th align="right">gdp_2015</th>
+<th align="right">gdp_per_person_2010</th>
+<th align="right">gdp_per_person_2011</th>
+<th align="right">gdp_per_person_2012</th>
+<th align="right">gdp_per_person_2013</th>
+<th align="right">gdp_per_person_2014</th>
+<th align="right">gdp_per_person_2015</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5036</td>
+<td align="right">4997</td>
+<td align="right">5212</td>
+<td align="right">5333</td>
+<td align="right">5510</td>
+<td align="right">5418</td>
+<td align="right">88114.36</td>
+<td align="right">89310.29</td>
+<td align="right">92862.49</td>
+<td align="right">95077.64</td>
+<td align="right">98681.85</td>
+<td align="right">97651.53</td>
+</tr>
+<tr class="even">
+<td align="right">4554</td>
+<td align="right">4556</td>
+<td align="right">4624</td>
+<td align="right">4778</td>
+<td align="right">4912</td>
+<td align="right">5113</td>
+<td align="right">65872.07</td>
+<td align="right">69228.55</td>
+<td align="right">69769.90</td>
+<td align="right">70460.54</td>
+<td align="right">Inf</td>
+<td align="right">74104.67</td>
+</tr>
+<tr class="odd">
+<td align="right">2617</td>
+<td align="right">2717</td>
+<td align="right">2734</td>
+<td align="right">2717</td>
+<td align="right">2813</td>
+<td align="right">2887</td>
+<td align="right">71046.56</td>
+<td align="right">73367.00</td>
+<td align="right">73969.86</td>
+<td align="right">74214.70</td>
+<td align="right">77163.63</td>
+<td align="right">79866.11</td>
+</tr>
+<tr class="even">
+<td align="right">21263</td>
+<td align="right">21784</td>
+<td align="right">22141</td>
+<td align="right">22552</td>
+<td align="right">23274</td>
+<td align="right">24248</td>
+<td align="right">115965.03</td>
+<td align="right">120372.21</td>
+<td align="right">120533.94</td>
+<td align="right">122075.59</td>
+<td align="right">124045.96</td>
+<td align="right">127549.89</td>
+</tr>
+<tr class="odd">
+<td align="right">15492</td>
+<td align="right">15798</td>
+<td align="right">16032</td>
+<td align="right">16342</td>
+<td align="right">16560</td>
+<td align="right">17041</td>
+<td align="right">75953.84</td>
+<td align="right">76409.65</td>
+<td align="right">76701.53</td>
+<td align="right">Inf</td>
+<td align="right">82719.76</td>
+<td align="right">85573.39</td>
+</tr>
+</tbody>
+</table>
+<div id="observations-made-about-the-dataset-1" class="section level5">
+<h5>Observations Made About the Dataset</h5>
+<ul>
+<li>The size of the dataset is {rows, columns}:</li>
+</ul>
+<pre><code>## [1] 233  12</code></pre>
+<ul>
+<li>Column Names and Data Types of the crime table:</li>
+</ul>
+<pre><code>##  [1] &quot;gdp_2010&quot;            &quot;gdp_2011&quot;            &quot;gdp_2012&quot;           
+##  [4] &quot;gdp_2013&quot;            &quot;gdp_2014&quot;            &quot;gdp_2015&quot;           
+##  [7] &quot;gdp_per_person_2010&quot; &quot;gdp_per_person_2011&quot; &quot;gdp_per_person_2012&quot;
+## [10] &quot;gdp_per_person_2013&quot; &quot;gdp_per_person_2014&quot; &quot;gdp_per_person_2015&quot;</code></pre>
+<pre><code>##            gdp_2010            gdp_2011            gdp_2012 
+##           &quot;integer&quot;           &quot;integer&quot;           &quot;integer&quot; 
+##            gdp_2013            gdp_2014            gdp_2015 
+##           &quot;integer&quot;           &quot;integer&quot;           &quot;integer&quot; 
+## gdp_per_person_2010 gdp_per_person_2011 gdp_per_person_2012 
+##            &quot;double&quot;            &quot;double&quot;            &quot;double&quot; 
+## gdp_per_person_2013 gdp_per_person_2014 gdp_per_person_2015 
+##            &quot;double&quot;            &quot;double&quot;            &quot;double&quot;</code></pre>
+</div>
+<div id="other-observations-changes-made-to-dataset-1" class="section level5">
+<h5>Other Observations &amp; Changes Made to Dataset</h5>
+<ul>
+<li>All of this GDP data was added to the entire crime dataset.</li>
+<li>We included the GDP each of the five years and GDP per person for each of the five years. <br> <br></li>
+</ul>
+</div>
+</div>
 </div>
 
 
