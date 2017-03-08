@@ -6,7 +6,7 @@ output: pdf_document
     #fig_caption: true
     #latex_engine: pdflatex
     #template: ~\INFO370\svm-r-markdown-templates\svm-latex-anon-ms
-title: "A review of Crime data and how GDP affects Crime Rates"
+title: "A Review of Crime Data and how GDP and Population Affects Crime Rates"
 author:
 - Kai Yoshino, University of Washington
 - Isabella Spaletta, University of Washington 
