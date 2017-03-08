@@ -1,5 +1,5 @@
 ---
-title: "Understanding GDP relations to Crime in US Cities"
+title: "Understanding GDP Relations to Crime in US Cities"
 author: "Kai Yoshino, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul"
 date: "March 6, 2017"
 output: html_document
