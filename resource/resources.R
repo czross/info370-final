@@ -228,4 +228,3 @@ linear.pop.gdp.property.crime <- lm(property_crime_rate_change_value ~ populatio
 
 plot(lm(total_crime_rate_change_value ~ population_change_value, data = linear.change.data))
 summary(linear.pop.gdp.property.crime)
-
