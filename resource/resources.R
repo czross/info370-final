@@ -128,7 +128,6 @@ poisson.pop.crime <- glm(person_crime_value ~ population_value, data = time.pois
                                family = poisson(link = "log"))
 summary(poisson.pop.crime)
 
-<<<<<<< HEAD
 gdp_rate_change <- gdp
 
 # adds columns: by year changes in gdp per person  
