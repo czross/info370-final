@@ -7,13 +7,13 @@ library(reshape2)
 # Read in data sets while in file
 
 cities.all <- read.csv("data/csv/Cities-2010-2015.csv") 
-#gdp <- read.csv("data/csv/gdp_crime.csv")
-#long.gdp <- read.csv("for-long.csv")
+gdp <- read.csv("data/csv/gdp_crime.csv")
+long.gdp <- read.csv("for-long.csv")
 
 
 # read in data sets while in RMD file 
-cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
-gdp <- read.csv("../data/csv/gdp_crime.csv")
+# cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
+# gdp <- read.csv("../data/csv/gdp_crime.csv")
 
 # convert all NA values to 0, ya not great but it makes things work
 gdp[is.na(gdp)] <- 0
@@ -96,9 +96,35 @@ population <- test %>%
 total.crime <- test %>% 
             filter(grepl("total_crime_", variable))
 
-total.gdp <- test %>% 
+person.gdp <- test %>% 
             filter(grepl("gdp_per_person", variable))
 
 crime.per.person <- test %>% 
-            filter(grepl(""))
+            filter(grepl("crime_per_person", variable))
 
+# Adding prefix to ready for join 
+colnames(population)[5] <- paste("population", colnames(population)[5], sep = "_")
+colnames(total.crime)[5] <- paste("total_crime", colnames(total.crime)[5], sep = "_")
+colnames(person.gdp)[5] <- paste("person_gdp", colnames(person.gdp)[5], sep = "_")
+colnames(crime.per.person)[5] <- paste("person_crime", colnames(crime.per.person)[5], sep = "_")
+
+time.poisson.data <- population
+colnames(person.gdp)[5]
+
+time.poisson.data$population_value <- population$population_value
+time.poisson.data$total_crime_value <- total.crime$total_crime_value
+time.poisson.data$person_gdp_value <- person.gdp$person_gdp_value
+time.poisson.data$person_crime_value <- crime.per.person$person_crime_value
+
+
+# This is a poisson regression looks at the crime committed per people 
+poisson.per.person.time <- glm(person_crime_value ~ population_value + person_gdp_value, data = time.poisson.data,
+                               family = poisson(link = "log"))
+
+summary(poisson.per.person.time)
+
+poisson.pop.crime <- glm(person_crime_value ~ population_value, data = time.poisson.data,
+                               family = poisson(link = "log"))
+summary(poisson.pop.crime)
+
+p
