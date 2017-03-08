@@ -1,0 +1,3 @@
+```{r, echo=FALSE}
+pander(cities.all[1:5,])
+```

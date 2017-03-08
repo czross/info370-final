@@ -4,25 +4,25 @@ author: "Kai Yoshino, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul"
 date: "March 6, 2017"
 output: html_document
 ---
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 library(rmarkdown)
+library(pander)
 source("resources.R")
 ```
+<br>
 
 ### What Are The Datasets?
 
-The two datasets that we used in this anaylsis are one for crime based data on U.S. cities over a 5 year time period (2010-2015) and one for the GDP for metropolitan areas in the U.S. over a 5 year time period (2010-2015). 
+For this research project we decided to use two datasets for our analysis; one for crime based data on U.S. cities over a 5 year time period (2010-2015), and one for the GDP for metropolitan areas in the U.S. over a 5 year time period (2010-2015). 
 
 #### FBI Crime Dataset
 
-Below is an example of what the crime dataset looks like (shows all 5 years): 
+You can see a sample of what the crime dataset looks like (shows all 5 years) [Here](../resource/crime-dataset.html).
 
-```{r, echo=FALSE}
-  kable(cities.all[1:5,])
-```
 
 ##### Observations Made About the Dataset
 * The size of the dataset is {rows, columns}:
@@ -52,7 +52,7 @@ Below is an example of what the crime dataset looks like (shows all 5 years):
 ```{r, echo=FALSE}
   gdp[1:5,] %>% 
   select_("X2010_gdp", "X2011_gdp", "X2012_gdp", "X2013_gdp", "X2014_gdp", "X2015_gdp", "gdp_per_person_2010", "gdp_per_person_2011",	"gdp_per_person_2012",	"gdp_per_person_2013", "gdp_per_person_2014",	"gdp_per_person_2015") %>% 
-  kable()
+  pander()
 ```
 
 ##### Observations Made About the Dataset
