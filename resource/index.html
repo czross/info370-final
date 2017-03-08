@@ -588,42 +588,6 @@ $(document).ready(function () {
 <ul>
 <li>Column Names and Data Types of the crime table:</li>
 </ul>
-<pre><code>##  [1] &quot;X&quot;                        &quot;State&quot;                   
-##  [3] &quot;City&quot;                     &quot;Population_2010&quot;         
-##  [5] &quot;Violent_Crime_2010&quot;       &quot;Murder_Manslaughter_2010&quot;
-##  [7] &quot;Rape_2010&quot;                &quot;Robbery_2010&quot;            
-##  [9] &quot;Aggravated_Assault_2010&quot;  &quot;Property_Crime_2010&quot;     
-## [11] &quot;Burglary_2010&quot;            &quot;Larceny_Theft_2010&quot;      
-## [13] &quot;Motor_Vehicle_Theft_2010&quot; &quot;Arson_2010&quot;              
-## [15] &quot;Population_2011&quot;          &quot;Violent_Crime_2011&quot;      
-## [17] &quot;Murder_Manslaughter_2011&quot; &quot;Forcible_Rape_2011&quot;      
-## [19] &quot;Robbery_2011&quot;             &quot;Aggravated_Assault_2011&quot; 
-## [21] &quot;Property_Crime_2011&quot;      &quot;Burglary_2011&quot;           
-## [23] &quot;Larceny_Theft_2011&quot;       &quot;Motor_Vehicle_Theft_2011&quot;
-## [25] &quot;Arson_2011&quot;               &quot;Population_2012&quot;         
-## [27] &quot;Violent_Crime_2012&quot;       &quot;Murder_Manslaughter_2012&quot;
-## [29] &quot;Rape_2012&quot;                &quot;Robbery_2012&quot;            
-## [31] &quot;Aggravated_Assault_2012&quot;  &quot;Property_Crime_2012&quot;     
-## [33] &quot;Burglary_2012&quot;            &quot;Larceny_Theft_2012&quot;      
-## [35] &quot;Motor_Vehicle_Theft_2012&quot; &quot;Arson_2012&quot;              
-## [37] &quot;Population_2013&quot;          &quot;Violent_Crime_2013&quot;      
-## [39] &quot;Murder_Manslaughter_2013&quot; &quot;Rape_2013&quot;               
-## [41] &quot;Rape_Legacy_2013&quot;         &quot;Robbery_2013&quot;            
-## [43] &quot;Aggravated_Assault_2013&quot;  &quot;Property_Crime_2013&quot;     
-## [45] &quot;Burglary_2013&quot;            &quot;Larceny_Theft_2013&quot;      
-## [47] &quot;Motor_Vehicle_Theft_2013&quot; &quot;Arson_2013&quot;              
-## [49] &quot;Population_2014&quot;          &quot;Violent_Crime_2014&quot;      
-## [51] &quot;Murder_Manslaughter_2014&quot; &quot;Rape_2014&quot;               
-## [53] &quot;Rape_Legacy_2014&quot;         &quot;Robbery_2014&quot;            
-## [55] &quot;Aggravated_Assault_2014&quot;  &quot;Property_Crime_2014&quot;     
-## [57] &quot;Burglary_2014&quot;            &quot;Larceny_Theft_2014&quot;      
-## [59] &quot;Motor_Vehicle_Theft_2014&quot; &quot;Arson_2014&quot;              
-## [61] &quot;Population_2015&quot;          &quot;Violent_Crime_2015&quot;      
-## [63] &quot;Murder_Manslaughter_2015&quot; &quot;Rape_2015&quot;               
-## [65] &quot;Rape_Legacy_2015&quot;         &quot;Robbery_2015&quot;            
-## [67] &quot;Aggravated_Assault_2015&quot;  &quot;Property_Crime_2015&quot;     
-## [69] &quot;Burglary_2015&quot;            &quot;Larceny_Theft_2015&quot;      
-## [71] &quot;Motor_Vehicle_Theft_2015&quot; &quot;Arson_2015&quot;</code></pre>
 <pre><code>##                        X                    State                     City 
 ##                &quot;integer&quot;                &quot;integer&quot;                &quot;integer&quot; 
 ##          Population_2010       Violent_Crime_2010 Murder_Manslaughter_2010 
@@ -688,12 +652,12 @@ $(document).ready(function () {
 <table>
 <thead>
 <tr class="header">
-<th align="right">gdp_2010</th>
-<th align="right">gdp_2011</th>
-<th align="right">gdp_2012</th>
-<th align="right">gdp_2013</th>
-<th align="right">gdp_2014</th>
-<th align="right">gdp_2015</th>
+<th align="right">X2010_gdp</th>
+<th align="right">X2011_gdp</th>
+<th align="right">X2012_gdp</th>
+<th align="right">X2013_gdp</th>
+<th align="right">X2014_gdp</th>
+<th align="right">X2015_gdp</th>
 <th align="right">gdp_per_person_2010</th>
 <th align="right">gdp_per_person_2011</th>
 <th align="right">gdp_per_person_2012</th>
@@ -780,18 +744,18 @@ $(document).ready(function () {
 <ul>
 <li>The size of the dataset is {rows, columns}:</li>
 </ul>
-<pre><code>## [1] 233  12</code></pre>
+<pre><code>## [1] 366  12</code></pre>
 <ul>
 <li>Column Names and Data Types of the crime table:</li>
 </ul>
-<pre><code>##  [1] &quot;gdp_2010&quot;            &quot;gdp_2011&quot;            &quot;gdp_2012&quot;           
-##  [4] &quot;gdp_2013&quot;            &quot;gdp_2014&quot;            &quot;gdp_2015&quot;           
+<pre><code>##  [1] &quot;X2010_gdp&quot;           &quot;X2011_gdp&quot;           &quot;X2012_gdp&quot;          
+##  [4] &quot;X2013_gdp&quot;           &quot;X2014_gdp&quot;           &quot;X2015_gdp&quot;          
 ##  [7] &quot;gdp_per_person_2010&quot; &quot;gdp_per_person_2011&quot; &quot;gdp_per_person_2012&quot;
 ## [10] &quot;gdp_per_person_2013&quot; &quot;gdp_per_person_2014&quot; &quot;gdp_per_person_2015&quot;</code></pre>
-<pre><code>##            gdp_2010            gdp_2011            gdp_2012 
-##           &quot;integer&quot;           &quot;integer&quot;           &quot;integer&quot; 
-##            gdp_2013            gdp_2014            gdp_2015 
-##           &quot;integer&quot;           &quot;integer&quot;           &quot;integer&quot; 
+<pre><code>##           X2010_gdp           X2011_gdp           X2012_gdp 
+##            &quot;double&quot;            &quot;double&quot;            &quot;double&quot; 
+##           X2013_gdp           X2014_gdp           X2015_gdp 
+##            &quot;double&quot;            &quot;double&quot;            &quot;double&quot; 
 ## gdp_per_person_2010 gdp_per_person_2011 gdp_per_person_2012 
 ##            &quot;double&quot;            &quot;double&quot;            &quot;double&quot; 
 ## gdp_per_person_2013 gdp_per_person_2014 gdp_per_person_2015 

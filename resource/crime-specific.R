@@ -6,14 +6,14 @@ library(reshape2)
 
 # Read in data sets while in file
 
-# cities.all <- read.csv("data/csv/Cities-2010-2015.csv") 
-# gdp <- read.csv("data/csv/gdp_crime.csv")
-# long.gdp <- read.csv("for-long.csv")
+cities.all <- read.csv("data/csv/Cities-2010-2015.csv") 
+gdp <- read.csv("data/csv/gdp_crime.csv")
+long.gdp <- read.csv("for-long.csv")
 
 
 # read in data sets while in RMD file 
-cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
-gdp <- read.csv("../data/csv/gdp_crime.csv")
+# cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
+# gdp <- read.csv("../data/csv/gdp_crime.csv")
 
 # convert all NA values to 0, ya not great but it makes things work
 gdp[is.na(gdp)] <- 0
@@ -27,20 +27,20 @@ gdp$gdp_per_person_2015 <- gdp$X2015_gdp * 1000000 / gdp$Population_2015
 
 # Add total crime for each year
 gdp <- gdp %>% 
-        mutate(total_crime_2010 = (Violent_crime_2010 + Property_crime_2010), 
-               total_crime_2011 = (Violent_crime_2011 + Property_crime_2011),
-               total_crime_2012 = (Violent_crime_2012 + Property_crime_2012),
-               total_crime_2013 = (Violent_crime_2013 + Property_crime_2013),
-               total_crime_2014 = (Violent_crime_2014 + Property_crime_2014),
-               total_crime_2015 = (Violent_crime_2015 + Property_crime_2015))
+  mutate(total_crime_2010 = (Violent_crime_2010 + Property_crime_2010), 
+         total_crime_2011 = (Violent_crime_2011 + Property_crime_2011),
+         total_crime_2012 = (Violent_crime_2012 + Property_crime_2012),
+         total_crime_2013 = (Violent_crime_2013 + Property_crime_2013),
+         total_crime_2014 = (Violent_crime_2014 + Property_crime_2014),
+         total_crime_2015 = (Violent_crime_2015 + Property_crime_2015))
 
 gdp <- gdp %>% 
-      mutate(crime_per_person_2010 = (total_crime_2010 / Population_2010),
-             crime_per_person_2011 = (total_crime_2011 / Population_2011),
-             crime_per_person_2012 = (total_crime_2012 / Population_2012),
-             crime_per_person_2013 = (total_crime_2013 / Population_2013),
-             crime_per_person_2014 = (total_crime_2014 / Population_2014),
-             crime_per_person_2015 = (total_crime_2015 / Population_2015))
+  mutate(crime_per_person_2010 = (total_crime_2010 / Population_2010),
+         crime_per_person_2011 = (total_crime_2011 / Population_2011),
+         crime_per_person_2012 = (total_crime_2012 / Population_2012),
+         crime_per_person_2013 = (total_crime_2013 / Population_2013),
+         crime_per_person_2014 = (total_crime_2014 / Population_2014),
+         crime_per_person_2015 = (total_crime_2015 / Population_2015))
 
 gdp <- gdp %>% 
   mutate(crime_change_10_11 = (crime_per_person_2011 - crime_per_person_2010),
@@ -53,7 +53,7 @@ gdp <- gdp %>%
 
 # Poisson regression of gdp per person and population vs crime per person. 
 poisson.2010 <- glm(crime_per_person_2010 ~ gdp_per_person_2010 + Population_2010, data = gdp, 
-    family = poisson(link = "log"))
+                    family = poisson(link = "log"))
 
 summary(poisson.2010)
 # f(x) = -3.082 + 0.0000009385(GDP) + 0.0000001263(POP)
@@ -84,23 +84,23 @@ poisson.2015 <- glm(crime_per_person_2015 ~ gdp_per_person_2015 + Population_201
 summary(poisson.2015)
 
 total <- cities.all %>% 
-          filter(grepl("-", City))
+  filter(grepl("-", City))
 columbia <- cities.all %>% 
-            filter(City == "Columbia")
+  filter(City == "Columbia")
 
 test <- melt(gdp, id.vars = c("State", "City", "id"))
 
 population <- test %>% 
-            filter(grepl("Population_", variable))
+  filter(grepl("Population_", variable))
 
 total.crime <- test %>% 
-            filter(grepl("total_crime_", variable))
+  filter(grepl("total_crime_", variable))
 
 person.gdp <- test %>% 
-            filter(grepl("gdp_per_person", variable))
+  filter(grepl("gdp_per_person", variable))
 
 crime.per.person <- test %>% 
-            filter(grepl("crime_per_person", variable))
+  filter(grepl("crime_per_person", variable))
 
 # Adding prefix to ready for join 
 colnames(population)[5] <- paste("population", colnames(population)[5], sep = "_")
@@ -116,15 +116,8 @@ time.poisson.data$total_crime_value <- total.crime$total_crime_value
 time.poisson.data$person_gdp_value <- person.gdp$person_gdp_value
 time.poisson.data$person_crime_value <- crime.per.person$person_crime_value
 
+# Run poisson on Property and Violent crime vs GDP per person and Population
 
-# This is a poisson regression looks at the crime committed per people 
-poisson.per.person.time <- glm(person_crime_value ~ population_value + person_gdp_value, data = time.poisson.data,
-                               family = poisson(link = "log"))
-
-summary(poisson.per.person.time)
-
-poisson.pop.crime <- glm(person_crime_value ~ population_value, data = time.poisson.data,
-                               family = poisson(link = "log"))
-summary(poisson.pop.crime)
-
+property.poisson <- glm(Property_crime_2015 ~ gdp_per_person_2015 + Population_2015, data = gdp, 
+                                            family = poisson(link = "log"), rm.na=TRUE)
 
