@@ -3,6 +3,7 @@ library(plotly)
 library(ggplot2)
 library(tidyr)
 library(reshape2)
+library(data.table)
 
 # Read in data sets while in file
 
@@ -127,4 +128,98 @@ poisson.pop.crime <- glm(person_crime_value ~ population_value, data = time.pois
                                family = poisson(link = "log"))
 summary(poisson.pop.crime)
 
-p
+gdp_rate_change <- gdp
+
+# adds columns: by year changes in gdp per person  
+gdp_rate_change$gdp_10_11 <- with(gdp_rate_change, (X2011_gdp - X2010_gdp) / mean(c(Population_2010, Population_2011)))
+gdp_rate_change$gdp_11_12 <- with(gdp_rate_change, (X2012_gdp - X2011_gdp) / mean(c(Population_2011, Population_2012)))
+gdp_rate_change$gdp_12_13 <- with(gdp_rate_change, (X2013_gdp - X2012_gdp) / mean(c(Population_2012, Population_2013)))
+gdp_rate_change$gdp_13_14 <- with(gdp_rate_change, (X2014_gdp - X2013_gdp) / mean(c(Population_2013, Population_2014)))
+gdp_rate_change$gdp_14_15 <- with(gdp_rate_change, (X2015_gdp - X2014_gdp) / mean(c(Population_2014, Population_2015)))
+
+# adds columns: by year changes in population 
+gdp_rate_change$Population_10_11 <- with(gdp_rate_change, (Population_2011 - Population_2010) / mean(c(Population_2010, Population_2011)))
+gdp_rate_change$Population_11_12 <- with(gdp_rate_change, (Population_2012 - Population_2011) / mean(c(Population_2010, Population_2011)))
+gdp_rate_change$Population_12_13 <- with(gdp_rate_change, (Population_2013 - Population_2012) / mean(c(Population_2010, Population_2011)))
+gdp_rate_change$Population_13_14 <- with(gdp_rate_change, (Population_2014 - Population_2013) / mean(c(Population_2010, Population_2011)))
+gdp_rate_change$Population_14_15 <- with(gdp_rate_change, (Population_2015 - Population_2014) / mean(c(Population_2010, Population_2011)))
+
+# adds columns: by year changes in total crime per person
+gdp_rate_change$total_crime_10_11 <- with(gdp_rate_change, (total_crime_2011 - total_crime_2010) / mean(c(Population_2010, Population_2011)))
+gdp_rate_change$total_crime_11_12 <- with(gdp_rate_change, (total_crime_2012 - total_crime_2011) / mean(c(Population_2011, Population_2012)))
+gdp_rate_change$total_crime_12_13 <- with(gdp_rate_change, (total_crime_2012 - total_crime_2013) / mean(c(Population_2012, Population_2013)))
+gdp_rate_change$total_crime_13_14 <- with(gdp_rate_change, (total_crime_2013 - total_crime_2014) / mean(c(Population_2013, Population_2014)))
+gdp_rate_change$total_crime_14_15 <- with(gdp_rate_change, (total_crime_2014 - total_crime_2015) / mean(c(Population_2014, Population_2015)))
+
+# adds columns: by year changes in property crime per person
+gdp_rate_change$Property_crime_10_11 <- with(gdp_rate_change, (Property_crime_2011 - Property_crime_2010) / mean(c(Population_2010, Population_2011)))
+gdp_rate_change$Property_crime_11_12 <- with(gdp_rate_change, (Property_crime_2012 - Property_crime_2011) / mean(c(Population_2011, Population_2012)))
+gdp_rate_change$Property_crime_12_13 <- with(gdp_rate_change, (Property_crime_2012 - Property_crime_2013) / mean(c(Population_2012, Population_2013)))
+gdp_rate_change$Property_crime_13_14 <- with(gdp_rate_change, (Property_crime_2013 - Property_crime_2014) / mean(c(Population_2013, Population_2014)))
+gdp_rate_change$Property_crime_14_15 <- with(gdp_rate_change, (Property_crime_2014 - Property_crime_2015) / mean(c(Population_2014, Population_2015)))
+
+# adds columns: by year changes in violent crime per person
+gdp_rate_change$Violent_crime_10_11 <- with(gdp_rate_change, (Violent_crime_2011 - Violent_crime_2010) / mean(c(Population_2010, Population_2011)))
+gdp_rate_change$Violent_crime_11_12 <- with(gdp_rate_change, (Violent_crime_2012 - Violent_crime_2011) / mean(c(Population_2011, Population_2012)))
+gdp_rate_change$Violent_crime_12_13 <- with(gdp_rate_change, (Violent_crime_2012 - Violent_crime_2013) / mean(c(Population_2012, Population_2013)))
+gdp_rate_change$Violent_crime_13_14 <- with(gdp_rate_change, (Violent_crime_2013 - Violent_crime_2014) / mean(c(Population_2013, Population_2014)))
+gdp_rate_change$Violent_crime_14_15 <- with(gdp_rate_change, (Violent_crime_2014 - Violent_crime_2015) / mean(c(Population_2014, Population_2015)))
+
+gdp_rate_change <- gdp_rate_change[,c("id", "State", "City", "gdp_10_11", "gdp_11_12", "gdp_12_13", "gdp_13_14", "gdp_14_15", "Population_10_11", "Population_11_12", 
+                            "Population_12_13", "Population_13_14", "Population_14_15", "total_crime_10_11", "total_crime_11_12", "total_crime_12_13",
+                            "total_crime_13_14", "total_crime_14_15", "Property_crime_10_11", "Property_crime_11_12", "Property_crime_12_13",
+                            "Property_crime_13_14", "Property_crime_14_15", "Violent_crime_10_11", "Violent_crime_11_12", "Violent_crime_12_13",
+                            "Violent_crime_13_14", "Violent_crime_14_15")]
+
+changes_test <- melt(gdp_rate_change, id.vars = c("State", "City", "id"))
+
+population.change <- changes_test %>% 
+  filter(grepl("Population_", variable))
+
+gdp.rate.change <- changes_test %>% 
+  filter(grepl("gdp_", variable))
+
+total.crime.rate.change <- changes_test %>% 
+  filter(grepl("total_crime", variable))
+
+violent.crime.rate.change <- changes_test %>% 
+  filter(grepl("Violent_crime", variable))
+
+property.crime.rate.change <- changes_test %>% 
+  filter(grepl("Property_crime", variable))
+
+# Adding prefix to ready for join 
+colnames(population.change)[5] <- paste("population_change", colnames(population.change)[5], sep = "_")
+colnames(total.crime.rate.change)[5] <- paste("total_crime_rate_change", colnames(total.crime.rate.change)[5], sep = "_")
+colnames(gdp.rate.change)[5] <- paste("gdp_rate_change", colnames(gdp.rate.change)[5], sep = "_")
+colnames(violent.crime.rate.change)[5] <- paste("violent_crime_rate_change", colnames(violent.crime.rate.change)[5], sep = "_")
+colnames(property.crime.rate.change)[5] <- paste("property_crime_rate_change", colnames(property.crime.rate.change)[5], sep = "_")
+
+linear.change.data <- population.change
+
+
+linear.change.data$population_change_value <- population.change$population_change_value
+linear.change.data$total_crime_rate_change_value <- total.crime.rate.change$total_crime_rate_change_value
+linear.change.data$gdp_rate_change_value <- gdp.rate.change$gdp_rate_change_value
+linear.change.data$violent_crime_rate_change_value <- violent.crime.rate.change$violent_crime_rate_change_value
+linear.change.data$property_crime_rate_change_value <- property.crime.rate.change$property_crime_rate_change_value
+
+
+sapply(linear.change.data, class)
+
+# use this to remove zero values - change tmp back to linear.change.data if you want to use full data frame
+tmp <- setDT(linear.change.data)[, .SD[!any(.SD[, -1, with = F] == 0)], by = City]
+
+
+# This is a linear regression that looks at changes in total crime per person as an outcome to yearly changes in gdp per person and changes in population per person
+linear.pop.gdp.crime <- lm(total_crime_rate_change_value ~ population_change_value + gdp_rate_change_value, data = tmp)
+summary(linear.pop.gdp.crime)
+
+# This is a linear regression that looks at changes in violent crime per person as an outcome to yearly changes in gdp per person and changes in population per person
+linear.pop.gdp.violent.crime <- lm(violent_crime_rate_change_value ~ population_change_value + gdp_rate_change_value, data = tmp)
+summary(linear.pop.gdp.violent.crime)
+
+# This is a linear regression that looks at changes in property crime per person as an outcome to yearly changes in gdp per person and changes in population per person
+linear.pop.gdp.property.crime <- lm(property_crime_rate_change_value ~ population_change_value + gdp_rate_change_value,data = tmp)
+summary(linear.pop.gdp.property.crime)
+
