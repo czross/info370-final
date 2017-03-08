@@ -8,11 +8,12 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
+library(rmarkdown)
 source("resources.R")
 ```
 
 ### What Are The Datasets?
-
+()
 The two datasets that we used in this anaylsis are one for crime based data on U.S. cities over a 5 year time period (2010-2015) and one for the GDP for metropolitan areas in the U.S. over a 5 year time period (2010-2015). 
 
 #### FBI Crime Dataset

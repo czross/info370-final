@@ -13,8 +13,8 @@ library(data.table)
 
 
 # read in data sets while in RMD file 
-cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
-gdp <- read.csv("../data/csv/gdp_crime.csv")
+cities.all <- read.csv("data/csv/Cities-2010-2015.csv")
+gdp <- read.csv("data/csv/gdp_crime.csv")
 
 # convert all NA values to 0, ya not great but it makes things work
 gdp[is.na(gdp)] <- 0
@@ -197,15 +197,11 @@ colnames(property.crime.rate.change)[5] <- paste("property_crime_rate_change", c
 
 linear.change.data <- population.change
 
-
 linear.change.data$population_change_value <- population.change$population_change_value
 linear.change.data$total_crime_rate_change_value <- total.crime.rate.change$total_crime_rate_change_value
 linear.change.data$gdp_rate_change_value <- gdp.rate.change$gdp_rate_change_value
 linear.change.data$violent_crime_rate_change_value <- violent.crime.rate.change$violent_crime_rate_change_value
 linear.change.data$property_crime_rate_change_value <- property.crime.rate.change$property_crime_rate_change_value
-
-
-sapply(linear.change.data, class)
 
 # use this to remove zero values - change tmp back to linear.change.data if you want to use full data frame
 tmp <- setDT(linear.change.data)[, .SD[!any(.SD[, -1, with = F] == 0)], by = City]
