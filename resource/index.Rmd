@@ -166,3 +166,7 @@ This is where the data got very interesting.  As we can see there is a very sign
 ### What this all means. 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7e381163830fef819067ae4194cd316e268d87c0

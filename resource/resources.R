@@ -208,14 +208,24 @@ tmp <- setDT(linear.change.data)[, .SD[!any(.SD[, -1, with = F] == 0)], by = Cit
 
 
 # This is a linear regression that looks at changes in total crime per person as an outcome to yearly changes in gdp per person and changes in population per person
-linear.pop.gdp.crime <- lm(total_crime_rate_change_value ~ population_change_value + gdp_rate_change_value, data = tmp)
+linear.pop.gdp.crime <- lm(total_crime_rate_change_value ~ population_change_value + gdp_rate_change_value, data = linear.change.data) ## < change data to linear.change.data if desired
+plot(linear.pop.gdp.crime)
+
 summary(linear.pop.gdp.crime)
+plot(lm(total_crime_rate_change_value ~ gdp_rate_change_value, data = linear.change.data))
+abline(lm(total_crime_rate_change_value ~ gdp_rate_change_value, data = linear.change.data))
+
+plot(lm(total_crime_rate_change_value ~ population_change_value, data = linear.change.data))
+abline(lm(total_crime_rate_change_value ~ population_change_value, data = linear.change.data))
 
 # This is a linear regression that looks at changes in violent crime per person as an outcome to yearly changes in gdp per person and changes in population per person
 linear.pop.gdp.violent.crime <- lm(violent_crime_rate_change_value ~ population_change_value + gdp_rate_change_value, data = tmp)
+#plot(linear.pop.gdp.violent.crime)
 summary(linear.pop.gdp.violent.crime)
 
 # This is a linear regression that looks at changes in property crime per person as an outcome to yearly changes in gdp per person and changes in population per person
 linear.pop.gdp.property.crime <- lm(property_crime_rate_change_value ~ population_change_value + gdp_rate_change_value,data = tmp)
+
+plot(lm(total_crime_rate_change_value ~ population_change_value, data = linear.change.data))
 summary(linear.pop.gdp.property.crime)
 
