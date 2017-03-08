@@ -10,11 +10,12 @@ output:
 
 ### Abstract
 
+********** Marisa
+The key findings of our research showed that a poisson regression showed no correlation between the GDP per person and crime per person in each metropolitan area with population as another independent variable. Between all of the years from 2010 to 2015, there was no significance between GDP per person, crime per person, and population of a metropolitan area for any compared years. From this, our contribution to society and information in general is that just looking at a metropolitan area's economy and population is not a good determining factor on the number of crimes permitted by person. 
+
 ### Introduction
 
 Currently, there are many different sites and organizations that collect data on cities or large metropolitan areas. The Federal Bureau of Investigation (FBI) collects crime data every year for individual cities within the United States, and the Bureau of Economic Analysis (BEA) gathered an overall metropolitan area Gross Domestic Product (GDP) every year since 2010. There are a few different organizations or articles that have looked at a comparison between crime rates and the GDP of specific metropolitan areas, but our specific analysis does not consider outside covariates when comparing crime rate and GDP of metropolitan areas. Some of the related work we will discuss takes the change in economy after the 2008 financial crisis into account. One other research group took into account economic uncertainty whereas we will not be taking into account outside covariates and comparing crime rate and GDP at face value. We want to look at the GDP and crime relationship unaffected by other covariates to see if there is a correlation between the two variables.
-
-**NEED KEY FINDINGS**
 
 Our analysis focuses on violent and property crime impact on city GDPs without covariates. The analysis is a unique contribution because rather than analyzing from the state level, we are choosing to focus on the city level, adding an extra area of granularity. In terms of covariates, we are not accounting for confounding covariates such as uncertainty demonstrated by Goulas. We are observing and comparing violent and property crime trends to city GDP trends. 
 
@@ -32,7 +33,7 @@ The preparation of our data, specifically combining the crime and GDP datasets, 
 
 To begin combining these two datasets, we joined all of the crime datasets together so that every year was accounted for in each city within the dataset. From here, we decided that since the GDP dataset had less cities/metropolitan areas to account for, we would take all of the corresponding cities from the crime dataset and add the GDP for each of those cities to the crime dataset. We then removed any city within the crime dataset that did not include a GDP (was not included in the GDP dataset). New rows were added for the metropolitan areas that included more than one city (e.g. Seattle-Tacoma-Bellevue) and added up the crimes in each of the cities to get a total for the new row added. This is important because to keep the GDP accurate, we had to keep the cities combined as a metropolitan area, but we could account for the crimes by adding the counts together and doing analysis from the new totals. We also removed any metropolitan area from the GDP dataset that included multiple states. 
 
-Our final dataset came out as a final CSV that included any city or metropolitan areas that were included in both the crime and GDP dataset. For each of these cities or metropolitan areas, we included the crime data for 2010-2015 and the GDP for 2010-2015. This came out to include _____**(how many rows did we end up with for our data?)** cities or metropolitan areas. 
+Our final dataset came out as a final CSV that included any city or metropolitan areas that were included in both the crime and GDP dataset. For each of these cities or metropolitan areas, we included the crime data for 2010-2015 and the GDP for 2010-2015. This came out to include 366 cities or metropolitan areas. We also added columns such as crime per person in each metropolitan area and gdp per person in each metropolitan area to run our analyses on. 
 
 One thing to note is that to reproduce this research you will have to use the CSV we created or any other researcher could find other data sources for GDP and crime for the years 2010 to 2015 and create their own new dataset. 
 
@@ -54,11 +55,11 @@ One other aspect to consider is the particular datasets used and how the data is
 
 ### References
 
-Goulas, Eleftherios, and Athina Zervoyianni. "Economic Growth and Crime: Does Uncertainty Matter?" Applied Economics Letters 20.5 (2013): 420-27. Web.
+[3] Goulas, Eleftherios, and Athina Zervoyianni. "Economic Growth and Crime: Does Uncertainty Matter?" Applied Economics Letters 20.5 (2013): 420-27. Web.
 
-Roman, John. "The Puzzling Relationship Between Crime and the Economy." CityLab. The Atlantic, 23 Sept. 2013. Web. 05 Mar. 2017. 
+[2] Roman, John. "The Puzzling Relationship Between Crime and the Economy." CityLab. The Atlantic, 23 Sept. 2013. Web. 05 Mar. 2017. 
 
-The Economist Online. "Falling Together." The Economist. The Economist Newspaper, 26 Sept. 2011. Web. 05 Mar. 2017. 
+[1] The Economist Online. "Falling Together." The Economist. The Economist Newspaper, 26 Sept. 2011. Web. 05 Mar. 2017. 
 
 
 
