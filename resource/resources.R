@@ -7,14 +7,14 @@ library(data.table)
 
 # Read in data sets while in file
 
-cities.all <- read.csv("data/csv/Cities-2010-2015.csv") 
-gdp <- read.csv("data/csv/gdp_crime.csv")
-long.gdp <- read.csv("for-long.csv")
+# cities.all <- read.csv("data/csv/Cities-2010-2015.csv") 
+# gdp <- read.csv("data/csv/gdp_crime.csv")
+# long.gdp <- read.csv("for-long.csv")
 
 
 # read in data sets while in RMD file 
-# cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
-# gdp <- read.csv("../data/csv/gdp_crime.csv")
+cities.all <- read.csv("../data/csv/Cities-2010-2015.csv")
+gdp <- read.csv("../data/csv/gdp_crime.csv")
 
 # convert all NA values to 0, ya not great but it makes things work
 gdp[is.na(gdp)] <- 0
@@ -128,6 +128,7 @@ poisson.pop.crime <- glm(person_crime_value ~ population_value, data = time.pois
                                family = poisson(link = "log"))
 summary(poisson.pop.crime)
 
+<<<<<<< HEAD
 gdp_rate_change <- gdp
 
 # adds columns: by year changes in gdp per person  
