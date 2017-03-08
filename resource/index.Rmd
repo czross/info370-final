@@ -89,3 +89,15 @@ The main purpose of combining these two data sets was to determine if there was 
 ```
 
 
+
+``` {r echo=FALSE}
+linear.pop.gdp.crime <- lm(total_crime_rate_change_value ~ population_change_value + gdp_rate_change_value, data = linear.change.data)
+summary(linear.pop.gdp.crime)
+
+plot(lm(total_crime_rate_change_value ~ population_change_value, data = linear.change.data))
+
+plot(lm(total_crime_rate_change_value ~ population_change_value, data = linear.change.data))
+```
+
+
+
