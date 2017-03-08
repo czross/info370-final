@@ -4,7 +4,6 @@ author: "Kai Yoshino, Isabella Spaletta, Chrisopther Ross, Marisa Nanakul"
 date: "March 6, 2017"
 output: html_document
 ---
-<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -17,11 +16,11 @@ source("resources.R")
 
 ### What Are The Datasets?
 
-For this research project we decided to use two datasets for our analysis; one for crime based data on U.S. cities over a 5 year time period (2010-2015), and one for the GDP for metropolitan areas in the U.S. over a 5 year time period (2010-2015). 
+For this research project we decided to use two datasets for our analysis; one for [crime based data](https://ucr.fbi.gov/crime-in-the-u.s/2015/crime-in-the-u.s.-2015/tables/table-8/table_8_offenses_known_to_law_enforcement_by_state_by_city_2015.xls/view) on U.S. cities over a 5 year time period (2010-2015), and one for the [GDP for metropolitan areas](https://www.bea.gov/national/index.htm) in the U.S. over a 5 year time period (2010-2015). 
 
 #### FBI Crime Dataset
 
-You can see a sample of what the crime dataset looks like (shows all 5 years) [Here](../resource/crime-dataset.html).
+You can see a sample of how we formatte the crime dataset (all 5 years) [Here](../resource/crime-dataset.html).
 
 
 ##### Observations Made About the Dataset
@@ -75,6 +74,7 @@ You can see a sample of what the crime dataset looks like (shows all 5 years) [H
   select_("X2010_gdp", "X2011_gdp", "X2012_gdp", "X2013_gdp", "X2014_gdp", "X2015_gdp", "gdp_per_person_2010", "gdp_per_person_2011",	"gdp_per_person_2012",	"gdp_per_person_2013", "gdp_per_person_2014",	"gdp_per_person_2015"), typeof)
 ```
 
+<br>
 
 ### What We Found
 The main purpose of combining these two data sets was to determine if there was some sort of correlation between a cities Gross Domestic Product, their population and the amount of crime that happens within it.  Now when initially looking at a data set like this it is very easy to just used the hard numbers to determine if there is any correlation between these three things.  If for example you were to look at just the population of a city vs the number of crimes committed in that city you would find that, why yes they are related. And if you were to plot this data it would look something like this: 
@@ -139,6 +139,8 @@ Each of the graphs has been given a regression line to make it easier to see the
 
 What this breaks down to is that for every one dollar that GDP per person increase the Crime rate increase by 0.0000004938 and for every person added to the population crme rate decreases by 0.0000000527.  Theses numbers seem incredibly small but when you are talking about millions of dollars in GDP and thousands of people it becomes increasingly important.  After computing this equation it was still found to not be statistically signifigant, meaning that the GDP per Person and the Population had no real impact on the Crime Rate. 
 
+<br>
+
 ### Crime Rate Change 
 
 After looking at just the crime rate over the 5 year time period we created a new variable which was the difference in crime rate, GDP per person, and Population change between the years.  At this point we had started to work more with countinous data than count data, so we decided to use a standard linear regression to find the equation and signifigance of the data.  
@@ -163,8 +165,14 @@ rate.crime.vs.pop
 
 This is where the data got very interesting.  As we can see there is a very signifigant change on the Difference in the rate of crime based on the population in a negative fashion.  This means that every time the population difference increase the rate of crime decreases.  But on the other side of thins the GDP change actually increases the Crime change.  Both of these factors were statistically signifigant, meaning the both affect the difference in the crime rate.  
 
+<br>
+
 ### What this all means. 
 
 In conclusion we have found that in terms of actual *Crime Rate* population and GDP have very little affect on it and no affect in a statistically signifigant way.  And while there are trends that can be seen in the data when looking at the graphs it is still not to a great enought degree to consider those two variables as major drivers in the *Crime Rate*.  What is interesting is when we start to look at the differences between the many different values.  After running our models we have found that the change in the Population difference has a very pronounced affect on the crime difference.  So as the population difference increases the crime difference decreases.  The GPD difference though has an opposite affect on crime diffence.  As the GDP difference increases the crime difference decreases.  This seems to go against what can be thought of as common held beliefs.  The idead that when you live in a larger city there are more crimes, is true yet a person actual likelihood of committing a crime is decreased.  And where one would think that the better a cities economy is the less crime we foud the opposite.  All this points to is that there is much more to why crime happens then just the population and Gross Domestic Product.  While these two things can have an affect on it there is still much research that needs to be done in order to truly understand all of the nuances that go into this.  
 
 _If you want to look at our working code you can go to the repo [here](https://github.com/czross/info370-final)_
+
+<br>
+<br>
+<br>
